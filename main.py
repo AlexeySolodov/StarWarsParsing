@@ -45,6 +45,7 @@ def people_page(page_num):
 
 def data_aggregation():
     """Функция для агрегации всех доступных страниц персонажей с homeworld: Tatooine"""
+
     result_persons = []
     has_more = True
     ind = 1
@@ -85,6 +86,7 @@ def save_pages_csv(file_name):
 
 def save_pages_mysql(db_name):
     """функцию для сохранения таблицы в Mysql"""
+
     con = pymysql.connect(
         host='localhost',
         user='root',
@@ -116,5 +118,5 @@ def save_pages_mysql(db_name):
 
 
 
-#save_page_csv('sw.csv')
-save_pages_mysql('starwars')
+#save_pages_csv('sw.csv')
+#save_pages_mysql('starwars')
