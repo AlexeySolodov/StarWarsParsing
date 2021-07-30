@@ -7,10 +7,14 @@ def people_page(page_num):
     """Функция для получение страницы персонажа с homeworld: Tatooine"""
 
     endpoint = 'https://swapi.dev/api/people/'
-
     url = endpoint + str(page_num)
-    person_data = requests.get(url).json()
+    try:
+        person_data = requests.get(url)
+        person_data.raise_for_status()
+    except requests.exceptions.HTTPError as error:
+        raise error
 
+    person_data = person_data.json()
     if not person_data or person_data.get('detail') == 'Not found':
         return None
 
@@ -118,5 +122,5 @@ def save_pages_mysql(db_name):
 
 
 
-#save_pages_csv('sw.csv')
+save_pages_csv('sw.csv')
 #save_pages_mysql('starwars')
